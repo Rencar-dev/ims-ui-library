@@ -3,6 +3,27 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
+  .ant-picker-clear {
+    display: none;
+  }
+  .ant-picker-body {
+    table,
+    th,
+    tr,
+    td {
+      border: none !important;
+    }
+
+    table.ant-picker-content {
+      tbody {
+        tr {
+          &:hover {
+            background: #fff !important;
+          }
+        }
+      }
+    }
+  }
   .ant-picker {
     box-sizing: border-box;
     margin: 0;
