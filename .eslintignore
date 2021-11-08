@@ -1,0 +1,4 @@
+webpack.*.js
+styleguide.config.js
+paths.js
+*.d.ts
