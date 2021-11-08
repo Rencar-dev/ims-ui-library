@@ -24,6 +24,8 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
       }
     }
   }
+
+  // 이상 지우면 안 되는 영역
   .ant-picker {
     box-sizing: border-box;
     margin: 0;
@@ -615,7 +617,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
   .ant-picker-panel
     > :not(.ant-picker-date-panel)
     .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-end::before {
-    background: #818181;
+    background: #d9d9d9;
   }
   .ant-picker-date-panel
     .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-start
@@ -627,7 +629,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
     top: 0;
     bottom: 0;
     z-index: -1;
-    background: #818181;
+    background: #d9d9d9;
     transition: all 0.3s;
     content: "";
   }
