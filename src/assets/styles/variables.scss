@@ -1,0 +1,81 @@
+//font
+$font-family: 'Nanum Barun Gothic', sans-serif;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// font size
+$h1-font-size: 30px;
+$h2-font-size: 24px;
+$h3-font-size: 18px;
+$h4-font-size: 16px;
+$h5-font-size: 14px;
+$h6-font-size: 12px;
+$xlarge-font-size: 18px;
+$large-font-size: 16px;
+$normal-font-size: 14px;
+$small-font-size: 12px;
+$smaller-font-size: 10px;
+
+// mobile font size
+$mobile-h1-font-size: 30px;
+$mobile-h2-font-size: 24px;
+$mobile-h3-font-size: 18px;
+$mobile-h4-font-size: 16px;
+$mobile-h5-font-size: 14px;
+$mobile-h6-font-size: 12px;
+$mobile-xlarge-font-size: 18px;
+$mobile-large-font-size: 16px;
+$mobile-normal-font-size: 14px;
+$mobile-small-font-size: 12px;
+$mobile-xsmall-font-size: 10px;
+$mobile-large-font-size: 16px;
+$mobile-normal-font-size: 14px;
+
+
+$use-super-pass-background: #d9f6ff;
+$use-super-pass-text: #02a0ff;
+$receive-super-pass-background: #dcd8ff;
+$receive-super-pass-text: #7169fe;
+
+/* new names */
+$main-color: #282828;
+$sub-color: #ffa723;
+$gray-1: #36353a;
+$gray-2: #575757;
+$gray-3: #c5c0bc;
+$gray-4: #d7d7d7; //button disabled color
+$gray-5: #efefef;
+$gray-6: #f6f6f6;
+$gray-7: #f6f7f8;
+$white: #ffffff;
+$black: #333333;
+$red: #f84b4b;
+$blue: #0b55f9;
+$green: #207244;
+
+@function black-a($params) {
+  @return rgba(0, 0, 0, $params);
+}
+
+/* old colors */
+$old-gray-1: #f7f7f7;
+$old-gray-2: #a8a8a8;
+$old-gray-3: #8d8d8d;
+$old-gray-4: #696969;
+$old-gray-5: #e5e5e5;
+
+$old-sub-color: #373d46;
+$old-error: #fd3b31;
+$old-success: #40bf5e;
+$old-disable: #f0f0f0;
+
+@function kakao($name) {
+  @if $name == 'yellow' { @return #ffea92 }
+  @else if $name == 'yellow-bold' { @return #ffdc4a }
+  @else if $name == 'skyblue' { @return #97cafd }
+  @else if $name == 'blue' { @return #6b9af1 }
+  @else if $name == 'blue-bold' { @return #007de8 }
+  @else if $name == 'red' { @return #ffbebe }
+  @else if $name == 'red-bold' { @return #e05656 }
+}

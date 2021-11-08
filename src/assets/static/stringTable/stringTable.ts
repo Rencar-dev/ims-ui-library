@@ -1,0 +1,1 @@
+export const DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR = `날짜 설정을 위해서는 props.onChange를 정의해주어야합니다. \n(props.value : Array<Dates | string>을 정의해주어야 합니다.)`

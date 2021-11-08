@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es5",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["__utils__/*"],
+      "@antdStyles/*": ["antdStyles/*"],
+      "@static/*": ["src/assets/static/*"]
+    },
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "style.d.ts"],
+  "exclude": ["node_modules"]
+}
