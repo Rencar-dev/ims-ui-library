@@ -3,7 +3,7 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
-  @import url(./antdGlobalStyle.scss);
+  @import "./antdGlobalStyle.scss";
   .ant-picker-clear {
     display: none;
   }
