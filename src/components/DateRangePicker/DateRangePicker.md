@@ -1,3 +1,4 @@
 ```tsx
 <DateRangePicker dates={["2021-10-05", "2021-10-20"]} />
+<DateRangePicker  />
 ```

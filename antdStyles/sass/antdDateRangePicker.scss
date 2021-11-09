@@ -3,10 +3,12 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
+  @import url(./antdGlobalStyle.scss);
   .ant-picker-clear {
     display: none;
   }
   .ant-picker-body {
+    padding: 0 !important;
     table,
     th,
     tr,
@@ -14,7 +16,16 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
       border: none !important;
     }
 
+    tr {
+      height: 40px !important;
+    }
+
     table.ant-picker-content {
+      width: 100%;
+      margin: 0 !important;
+      thead {
+        background-color: #f6f6f6 !important;
+      }
       tbody {
         tr {
           &:hover {
@@ -429,7 +440,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
     display: flex;
     padding: 0 8px;
     color: rgba(0, 0, 0, 0.85);
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: none !important;
   }
   .ant-picker-header > * {
     flex: none;
@@ -454,6 +465,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
     flex: auto;
     font-weight: 500;
     line-height: 40px;
+    font-size: 16px !important;
   }
   .ant-picker-header-view button {
     color: inherit;
@@ -636,7 +648,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
   .ant-picker-date-panel
     .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-start
     .ant-picker-cell-inner::after {
-    right: -6px;
+    right: -9px !important;
     left: 0;
     border-radius: 50% 0 0 50%;
   }
@@ -644,7 +656,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
     .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-end
     .ant-picker-cell-inner::after {
     right: 0;
-    left: -6px;
+    left: -9px !important;
     border-radius: 0 50% 50% 0;
   }
   .ant-picker-cell-range-hover.ant-picker-cell-range-start::after {
@@ -958,7 +970,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after,
   .ant-picker-date-panel
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-start::after {
-    left: 6px;
+    left: 8px;
     border-left: 1px dashed #5b5b5b;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
@@ -975,7 +987,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-edge-end:not(.ant-picker-cell-range-hover-edge-end-near-range)::after,
   .ant-picker-date-panel
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-end::after {
-    right: 6px;
+    right: 8px;
     border-right: 1px dashed #5b5b5b;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;

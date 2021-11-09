@@ -2,17 +2,27 @@
 /* stylelint-disable no-duplicate-selectors */
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+@import url(./antdGlobalStyle.scss);
 div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
   /* stylelint-disable-next-line */ }
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-clear {
     display: none; }
-  div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body table,
-  div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body th,
-  div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body tr,
-  div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body td {
-    border: none !important; }
-  div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body table.ant-picker-content tbody tr:hover {
-    background: #fff !important; }
+  div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body {
+    padding: 0 !important; }
+    div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body table,
+    div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body th,
+    div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body tr,
+    div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body td {
+      border: none !important; }
+    div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body tr {
+      height: 40px !important; }
+    div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body table.ant-picker-content {
+      width: 100%;
+      margin: 0 !important; }
+      div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body table.ant-picker-content thead {
+        background-color: #f6f6f6 !important; }
+      div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-body table.ant-picker-content tbody tr:hover {
+        background: #fff !important; }
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker {
     box-sizing: border-box;
     margin: 0;
@@ -342,7 +352,7 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
     display: flex;
     padding: 0 8px;
     color: rgba(0, 0, 0, 0.85);
-    border-bottom: 1px solid #f0f0f0; }
+    border-bottom: none !important; }
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-header > * {
     flex: none; }
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-header button {
@@ -361,7 +371,8 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-header-view {
     flex: auto;
     font-weight: 500;
-    line-height: 40px; }
+    line-height: 40px;
+    font-size: 16px !important; }
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-header-view button {
     color: inherit;
     font-weight: inherit; }
@@ -515,14 +526,14 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-date-panel
 .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-start
 .ant-picker-cell-inner::after {
-    right: -6px;
+    right: -9px !important;
     left: 0;
     border-radius: 50% 0 0 50%; }
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-date-panel
 .ant-picker-cell-in-view.ant-picker-cell-in-range.ant-picker-cell-range-hover-end
 .ant-picker-cell-inner::after {
     right: 0;
-    left: -6px;
+    left: -9px !important;
     border-radius: 0 50% 50% 0; }
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-cell-range-hover.ant-picker-cell-range-start::after {
     right: 50%; }
@@ -776,7 +787,7 @@ tr
 .ant-picker-cell-in-view.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after,
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-date-panel
 .ant-picker-cell-in-view.ant-picker-cell-range-hover-start::after {
-    left: 6px;
+    left: 8px;
     border-left: 1px dashed #5b5b5b;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%; }
@@ -792,7 +803,7 @@ tr
 .ant-picker-cell-in-view.ant-picker-cell-range-hover-edge-end:not(.ant-picker-cell-range-hover-edge-end-near-range)::after,
   div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] .ant-picker-date-panel
 .ant-picker-cell-in-view.ant-picker-cell-range-hover-end::after {
-    right: 6px;
+    right: 8px;
     border-right: 1px dashed #5b5b5b;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%; }
