@@ -116,9 +116,13 @@
   }
   .ant-picker-input > input:-ms-input-placeholder {
     color: #bfbfbf;
+    font-size: 13px;
+    text-align: center;
   }
   .ant-picker-input > input::placeholder {
     color: #bfbfbf;
+    font-size: 13px;
+    text-align: center;
   }
   .ant-picker-input > input:-moz-placeholder-shown {
     text-overflow: ellipsis;
