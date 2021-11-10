@@ -2,11 +2,10 @@
 /* stylelint-disable no-duplicate-selectors */
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
-div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
+
+  .ant-picker-dropdown {
   @import "./antdGlobalStyle.scss";
-  .ant-picker-clear {
-    display: none;
-  }
+
   .ant-picker-body {
     padding: 0 !important;
     table,
@@ -34,6 +33,11 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
         }
       }
     }
+  }
+  }
+
+  .ant-picker-clear {
+    display: none;
   }
 
   // 이상 지우면 안 되는 영역
@@ -1187,4 +1191,4 @@ div.library_style_custom_wrap_for_imsui[data-style="dateRangePicker"] {
   .ant-picker-panel-rtl .ant-picker-time-panel {
     direction: ltr;
   }
-}
+  
