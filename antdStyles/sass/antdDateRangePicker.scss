@@ -274,7 +274,7 @@
     margin-left: 11px;
     background: #282828;
     opacity: 0;
-    transition: all 0.3s ease-out;
+    // transition: all 0.3s ease-out;
     pointer-events: none;
   }
   .ant-picker-range.ant-picker-focused .ant-picker-active-bar {
@@ -545,7 +545,7 @@
     line-height: 30px;
   }
   .ant-picker-cell {
-    padding: 3px 0;
+    padding: 3px  0;
     color: rgba(0, 0, 0, 0.25);
     cursor: pointer;
   }
@@ -558,7 +558,7 @@
     right: 0;
     left: 0;
     z-index: 1;
-    height: 24px;
+    height: 30px;
     transform: translateY(-50%);
     transition: all 0.3s;
     content: "";
@@ -567,9 +567,9 @@
     position: relative;
     z-index: 2;
     display: inline-block;
-    min-width: 24px;
-    height: 24px;
-    line-height: 24px;
+    min-width: 30px !important;
+    height: 30px !important;
+    line-height: 32px !important;
     border-radius: 2px;
     transition: background 0.3s, border 0.3s;
   }
@@ -959,7 +959,7 @@
     position: absolute;
     top: 50%;
     z-index: 0;
-    height: 24px;
+    height: 30px;
     border-top: 1px dashed #5b5b5b;
     border-bottom: 1px dashed #5b5b5b;
     transform: translateY(-50%);
@@ -978,10 +978,10 @@
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after,
   .ant-picker-date-panel
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-start::after {
-    left: 8px;
+    left: 5px;
     border-left: 1px dashed #5b5b5b;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
+    border-top-left-radius: 47%;
+    border-bottom-left-radius: 47%;
   }
   .ant-picker-date-panel
     tr
@@ -995,10 +995,10 @@
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-edge-end:not(.ant-picker-cell-range-hover-edge-end-near-range)::after,
   .ant-picker-date-panel
     .ant-picker-cell-in-view.ant-picker-cell-range-hover-end::after {
-    right: 8px;
+    right: 5px;
     border-right: 1px dashed #5b5b5b;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
+    border-top-right-radius: 47%;
+    border-bottom-right-radius: 47%;
   }
   .ant-picker-year-panel .ant-picker-cell-inner {
     border-radius: 50% !important;
