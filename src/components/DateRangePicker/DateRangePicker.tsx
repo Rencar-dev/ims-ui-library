@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import dayjsGenerateConfig from "rc-picker/lib/generate/dayjs";
 import generatePicker from "antd/es/date-picker/generatePicker";
 
@@ -16,17 +16,10 @@ import { DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR } from "@src/assets/static/str
 const DateRangePicker: React.FC<DateRangePickerProps> = (
   props: DateRangePickerProps
 ) => {
-  const [isAvailable, setIsAvailable] = useState(true);
   const DatePicker: any = generatePicker<Dayjs>(dayjsGenerateConfig);
   const className = props.className || "";
   const dropdownClassName = props.dropdownClassName || "";
-  const defaultPopupStyle = {
-    pointerEvents: "auto",
-    display: isAvailable ? "block" : "none",
-  };
-  const popupStyle = props?.popupStyle
-    ? { ...props.popupStyle, ...defaultPopupStyle }
-    : defaultPopupStyle; // popup Calender style
+  const popupStyle = props?.popupStyle // popup Calender style
   const dateFormat = props.format || "YYYY-MM-DD";
   const locale = props.locale || korea;
   const size = props.size || "middle";
@@ -35,24 +28,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
   const value = stringDateToDayjsForArray(props.dates, dateFormat) || [];
   const mode = props.mode || "";
   const disabled = props.disabled || false;
-
-  useEffect(() => {
-    if (!isAvailable) setIsAvailable(true);
-  });
-
-  const onBlur = (click: any) => {
-    if (!click.target.value) {
-      setIsAvailable(false);
-    } else {
-      const [day1, day2] = dayjsFormatParserForArray(value) as Array<
-        string | undefined
-      >;
-      if (day1 === click.target.value || day2 === click.target.value) {
-        setIsAvailable(false);
-      }
-    }
-    props?.onBlur ? props.onBlur(click) : undefined;
-  };
 
   const onChange = (dates: Array<Dayjs>): void => {
     const [day1, day2] = dates;
@@ -63,7 +38,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
       return alert("종료일자는 시작일자보다 앞설 수 없습니다.");
     }
     const _dates = dayjsFormatParserForArray(dates, dateFormat);
-    setIsAvailable(false);
     if (!props?.onChange) {
       console.log(DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR);
       return;
@@ -100,7 +74,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     onOpenChange,
     getPopupContainer,
     disabled,
-    onBlur,
   };
 
   return (
