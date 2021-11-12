@@ -29,6 +29,13 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
   const mode = props.mode || "";
   const disabled = props.disabled || false;
 
+  const isEqualWithBeforeValue = (before: any, current :any) => {
+    const [beforeDay1, beforeDay2] = before;
+    const [currentDay1, currentDay2] = current;
+
+    return beforeDay1 !== currentDay1 && beforeDay2 !== currentDay2
+  }
+
   const onChange = (dates: Array<Dayjs>): void => {
     const [day1, day2] = dates;
     const hours = dayjs(day2).diff(dayjs(day1), "hours");
@@ -37,12 +44,17 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     if (isReverseDates) {
       return alert("종료일자는 시작일자보다 앞설 수 없습니다.");
     }
-    const _dates = dayjsFormatParserForArray(dates, dateFormat);
+
     if (!props?.onChange) {
       console.log(DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR);
       return;
     }
-    props?.onChange(_dates);
+
+    const beforeValue = dayjsFormatParserForArray(value, dateFormat);
+    const currentValue = dayjsFormatParserForArray(dates, dateFormat); 
+    if(!isEqualWithBeforeValue(beforeValue, currentValue)) return; 
+
+    props?.onChange(currentValue);
   };
 
   const onOpenChange = props.onOpenChange
