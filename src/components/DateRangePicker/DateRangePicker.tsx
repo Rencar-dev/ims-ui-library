@@ -28,6 +28,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
   const value = stringDateToDayjsForArray(props.dates, dateFormat) || [];
   const mode = props.mode || "";
   const disabled = props.disabled || false;
+  let FocusBlurTarget: any = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
 
   const isEqualWithBeforeValue = (before: any, current :any) => {
     const [beforeDay1, beforeDay2] = before;
@@ -54,6 +55,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     const currentValue = dayjsFormatParserForArray(dates, dateFormat); 
     if(!isEqualWithBeforeValue(beforeValue, currentValue)) return; 
 
+    FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
     props?.onChange(currentValue);
   };
 
@@ -71,6 +73,44 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
         return triggerNode.parentNode;
       };
 
+  const onFocus = props.onFocus ? props.onFocus : ( event: any ) => {
+    if(!!FocusBlurTarget.focusPlaceholder && !!FocusBlurTarget.blurPlaceholder) {
+      if(FocusBlurTarget.focusPlaceholder === FocusBlurTarget.blurPlaceholder) {
+        if(FocusBlurTarget.focusValue === FocusBlurTarget.blurValue) {
+          FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+          return;
+        }
+    }
+  }
+    FocusBlurTarget.blurPlaceholder = FocusBlurTarget.focusPlaceholder;
+    FocusBlurTarget.focusPlaceholder = event.target.placeholder;
+    FocusBlurTarget.focusValue = event.target.value;
+  }
+
+  const onBlur = props.onBlur ? props.onBlur : ( event: any ) => {
+    let _dates = Array.isArray(props.dates) ?  [...props.dates] : [];
+    if(!!FocusBlurTarget.focusPlaceholder && !!FocusBlurTarget.blurPlaceholder) {
+      if(FocusBlurTarget.focusPlaceholder !== FocusBlurTarget.blurPlaceholder) {
+        if(FocusBlurTarget.blurPlaceholder === '시작일') {
+          _dates[0] = dayjs(FocusBlurTarget.blurValue);
+        }
+        if(FocusBlurTarget.blurPlaceholder === '종료일') {
+          _dates[1] = dayjs(FocusBlurTarget.blurValue);
+        }
+        _dates = _dates.map(date => dayjs(date).format(dateFormat))
+        if(_dates.some(date=> date === 'Invalid Date')) {
+          _dates = Array.isArray(props.dates) ?  [...props.dates] : [];
+          _dates = _dates.map(date => dayjs(date).format(dateFormat));
+          return;
+        }
+        FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+        props.onChange(_dates)
+      }
+    }
+    FocusBlurTarget.blurPlaceholder = event.target.placeholder;
+    FocusBlurTarget.blurValue = event.target.value;
+  }
+
   const _props = {
     className,
     dropdownClassName,
@@ -86,6 +126,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     onOpenChange,
     getPopupContainer,
     disabled,
+    onFocus,
+    onBlur
   };
 
   return (

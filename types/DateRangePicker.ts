@@ -18,4 +18,5 @@ export type DateRangePickerProps = {
   getPopupContainer: (trigger: any) => void;
   disabled?: boolean;
   onBlur?: (click:any) => void;
+  onFocus?: (click: any) => void;
 };

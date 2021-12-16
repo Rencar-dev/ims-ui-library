@@ -20,7 +20,9 @@ export const dayjsFormatParserForArray = (
   if (!dates?.every((date) => !!date)) return;
   
   const result = dates.map((date: EventValue<Dayjs>) =>
-    date?.format(_format || "YYYY-MM-DD")
+    {
+      return date?.format(_format || "YYYY-MM-DD")
+    }
   );
   return result;
 };
