@@ -10,7 +10,7 @@ import {
   dayjsFormatParserForArray,
   stringDateToDayjsForArray,
 } from "@utils/dateUtils";
-import { DateRangePickerProps } from "./types/DateRangePicker";
+import { DateRangePickerProps } from "../../../types/DateRangePicker";
 import { DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR } from "@src/assets/static/stringTable/stringTable";
 
 const DateRangePicker: React.FC<DateRangePickerProps> = (

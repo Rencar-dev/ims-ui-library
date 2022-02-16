@@ -1,7 +1,9 @@
 import DateRangePicker from "@components/DateRangePicker/DateRangePicker";
 import DateSinglePicker from "./components/DateSinglePicker/DateSinglePicker";
 
-export default {
+const imsui = {
   DateRangePicker,
   DateSinglePicker,
 };
+
+export default imsui;
