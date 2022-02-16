@@ -8,7 +8,7 @@ import korea from "antd/es/locale/ko_KR";
 import ConfigProvider from "antd/es/config-provider";
 
 const DateSinglePicker = function (props: DateSinglePickerProps): ReactElement {
-  const { selectedDate, format } = props;
+  const { selectedDate, format, style } = props;
   const DatePicker: any = generatePicker<Dayjs>(dayjsGenerateConfig);
   const value = selectedDate ? dayjs(selectedDate) : "";
 
@@ -25,6 +25,7 @@ const DateSinglePicker = function (props: DateSinglePickerProps): ReactElement {
   const DatePickerProps = {
     value,
     onChange,
+    style,
   };
   return (
     <ConfigProvider locale={korea}>
