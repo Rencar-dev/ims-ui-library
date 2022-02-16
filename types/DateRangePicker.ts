@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { CSSProperties } from "react";
 
 export type DateRangePickerProps = {
@@ -13,10 +13,11 @@ export type DateRangePickerProps = {
   dates?: Array<Dayjs | string>;
   mode?: "time" | "date" | "month" | "year" | "decade";
   isSetGlobalModule ?: boolean;
-  onChange: (_dates: void | (string | undefined)[]) => void;
+  onChange: (_dates: void | (string | undefined | Dayjs)[]) => void;
   onOpenChange: (open: any) => void;
   getPopupContainer: (trigger: any) => void;
   disabled?: boolean;
   onBlur?: (click:any) => void;
   onFocus?: (click: any) => void;
+  singleRangePicker?: (dates: (string | undefined | Dayjs)[]) => void;
 };

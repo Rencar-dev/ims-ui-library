@@ -53,7 +53,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
 
     const beforeValue = dayjsFormatParserForArray(value, dateFormat);
     const currentValue = dayjsFormatParserForArray(dates, dateFormat); 
-    if(!isEqualWithBeforeValue(beforeValue, currentValue)) return; 
+    if (!props.singleRangePicker && !isEqualWithBeforeValue(beforeValue, currentValue)) return; 
 
     FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
     props?.onChange(currentValue);
@@ -89,20 +89,29 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
 
   const onBlur = props.onBlur ? props.onBlur : ( event: any ) => {
     let _dates = Array.isArray(props.dates) ?  [...props.dates] : [];
-    if(!!FocusBlurTarget.focusPlaceholder && !!FocusBlurTarget.blurPlaceholder) {
-      if(FocusBlurTarget.focusPlaceholder !== FocusBlurTarget.blurPlaceholder) {
-        if(FocusBlurTarget.blurPlaceholder === '시작일') {
+    if (!!FocusBlurTarget.focusPlaceholder && !!FocusBlurTarget.blurPlaceholder) {
+      if (FocusBlurTarget.focusPlaceholder !== FocusBlurTarget.blurPlaceholder) {
+        if (FocusBlurTarget.blurPlaceholder === '시작일') {
           _dates[0] = dayjs(FocusBlurTarget.blurValue);
         }
-        if(FocusBlurTarget.blurPlaceholder === '종료일') {
+
+        if (FocusBlurTarget.blurPlaceholder === '종료일') {
           _dates[1] = dayjs(FocusBlurTarget.blurValue);
         }
+
+        if (!!props.singleRangePicker) {
+          const startDate = dayjs(_dates[0]).format('YYYY-MM-DD');
+          const endDate = dayjs(_dates[1]).format('YYYY-MM-DD');
+          return props.singleRangePicker([startDate, endDate])
+        }
+
         _dates = _dates.map(date => dayjs(date).format(dateFormat))
-        if(_dates.some(date=> date === 'Invalid Date')) {
+        if(_dates.some(date => date === 'Invalid Date')) {
           _dates = Array.isArray(props.dates) ?  [...props.dates] : [];
           _dates = _dates.map(date => dayjs(date).format(dateFormat));
           return;
         }
+
         FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
         props.onChange(_dates)
       }
@@ -127,7 +136,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     getPopupContainer,
     disabled,
     onFocus,
-    onBlur
+    onBlur,
   };
 
   return (
