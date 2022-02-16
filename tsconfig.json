@@ -13,7 +13,7 @@
       "@utils/*": ["__utils__/*"],
       "@antdStyles/*": ["antdStyles/*"],
       "@static/*": ["src/assets/static/*"]
-    },
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "style.d.ts"],
   "exclude": ["node_modules"]
