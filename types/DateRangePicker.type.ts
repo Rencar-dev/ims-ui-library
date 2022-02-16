@@ -12,11 +12,11 @@ export type DateRangePickerProps = {
   inputStyle?: CSSProperties;
   dates?: Array<Dayjs | string>;
   mode?: "time" | "date" | "month" | "year" | "decade";
-  isSetGlobalModule ?: boolean;
+  isSetGlobalModule?: boolean;
   onChange: (_dates: void | (string | undefined)[]) => void;
   onOpenChange: (open: any) => void;
   getPopupContainer: (trigger: any) => void;
   disabled?: boolean;
-  onBlur?: (click:any) => void;
+  onBlur?: (click: any) => void;
   onFocus?: (click: any) => void;
 };

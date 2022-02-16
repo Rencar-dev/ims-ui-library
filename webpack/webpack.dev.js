@@ -4,9 +4,9 @@ module.exports = {
   mode: "development",
   output: {
     path: path.outputPath,
-    filename: "[name].js",
+    filename: (pathData) => pathData.chunk.name === 'index' ? "[name].js" : "[name]/index.js",
     library: {
-      name: ["imsui"], // 라이브러리 네임스페이스 설정
+      name: ["ims-ui-library_v1"], // 라이브러리 네임스페이스 설정
       type: "umd", // 라이브러리 타겟 설정
     },
   },

@@ -45,7 +45,6 @@ const entryPoints = () => {
 
 module.exports = {
   entry: {
-    index: path.join(commonPaths.srcFolder, "index.ts"),
     ...entryPoints(),
   },
   resolve: {

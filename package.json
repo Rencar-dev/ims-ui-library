@@ -1,6 +1,6 @@
 {
   "name": "ims-ui-library_v1",
-  "version": "0.0.18",
+  "version": "0.0.23",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -55,7 +55,6 @@
   },
   "files": [
     "dist",
-    "index.d.ts",
     "types",
     "antdStyles",
     "static"
