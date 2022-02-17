@@ -1,12 +1,12 @@
 {
   "name": "ims-ui-library_v1",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build:dev": "npm run sass && webpack --mode development",
     "build:prod": "npm run sass && NODE_ENV=production webpack --mode production",
-    "build": "rm -rf dist && npm run sass && npm run build:prod",
+    "build": "rm -rf dist && npm run build:prod",
     "sass": "npm run css:clear && node-sass antdStyles/sass --output antdStyles/css",
     "css:clear": "cd antdStyles && rm -rf css && cd ..",
     "dev": "styleguidist server"
