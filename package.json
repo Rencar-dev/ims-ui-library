@@ -1,6 +1,6 @@
 {
-  "name": "ims-ui-library_v1",
-  "version": "0.0.23",
+  "name": "@imsmobility/react-ims-ui",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -9,7 +9,12 @@
     "build": "rm -rf dist && npm run build:prod",
     "sass": "npm run css:clear && node-sass antdStyles/sass --output antdStyles/css",
     "css:clear": "cd antdStyles && rm -rf css && cd ..",
-    "dev": "styleguidist server"
+    "dev": "styleguidist server",
+    "publish":"npm publish --access=public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rencar-dev/ims-ui-library"
   },
   "author": "rencarHDH",
   "license": "ISC",
