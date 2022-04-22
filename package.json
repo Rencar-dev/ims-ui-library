@@ -9,8 +9,7 @@
     "build": "rm -rf dist && npm run build:prod",
     "sass": "npm run css:clear && node-sass antdStyles/sass --output antdStyles/css",
     "css:clear": "cd antdStyles && rm -rf css && cd ..",
-    "dev": "styleguidist server",
-    "publish": "npm publish --access=public"
+    "dev": "styleguidist server"
   },
   "repository": {
     "type": "git",
