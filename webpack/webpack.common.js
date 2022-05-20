@@ -10,6 +10,8 @@ const tsImportPluginFactoryAntdOption = {
   libraryDirectory: "lib",
   style: "css",
 };
+
+const ESLintPlugin = require("eslint-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const BANNER = [
@@ -77,7 +79,6 @@ module.exports = {
               },
             },
           },
-          "eslint-loader",
         ],
         exclude: /node_modules/,
       },
@@ -101,6 +102,7 @@ module.exports = {
       banner: BANNER,
       entryOnly: true,
     }),
+    new ESLintPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: "static",
       reportFilename: "bundleSizeReport.html",

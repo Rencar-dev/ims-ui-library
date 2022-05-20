@@ -1,5 +1,5 @@
-import { Dayjs } from "dayjs";
-import { CSSProperties } from "react";
+import type { Dayjs } from "dayjs";
+import type { CSSProperties } from "react";
 
 export type DateSinglePickerProps = {
   selectedDate?: Date | Dayjs | string;
