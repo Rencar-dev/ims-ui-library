@@ -6,4 +6,6 @@ export type DateSinglePickerProps = {
   onChange(date: string, dateString?: string): void;
   format?: string;
   style?: CSSProperties;
+  placeholder?: string;
+  disabled?: boolean;
 };

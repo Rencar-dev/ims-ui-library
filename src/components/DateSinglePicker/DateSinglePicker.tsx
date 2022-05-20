@@ -26,6 +26,8 @@ const DateSinglePicker = function (props: DateSinglePickerProps): ReactElement {
     value,
     onChange,
     style,
+    ...(props.placeholder && { placeholder: props.placeholder }),
+    ...(props.disabled && { disabled: props.disabled }),
   };
   return (
     <ConfigProvider locale={korea}>
