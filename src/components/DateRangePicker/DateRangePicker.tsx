@@ -127,7 +127,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     getPopupContainer,
     disabled,
     onFocus,
-    onBlur
+    onBlur,
+    disabledDate:props?.disabledDate
   };
 
   return (
