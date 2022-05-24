@@ -8,4 +8,5 @@ export type DateSinglePickerProps = {
   style?: CSSProperties;
   placeholder?: string;
   disabled?: boolean;
+  disabledDate?: (date: Dayjs) => boolean;
 };

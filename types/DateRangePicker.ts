@@ -19,4 +19,5 @@ export type DateRangePickerProps = {
   disabled?: boolean;
   onBlur?: (click:any) => void;
   onFocus?: (click: any) => void;
+  disabledDate?: (date: Dayjs) => boolean;
 };
