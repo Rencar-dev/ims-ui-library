@@ -34,7 +34,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     const [beforeDay1, beforeDay2] = before;
     const [currentDay1, currentDay2] = current;
 
-    return beforeDay1 !== currentDay1 && beforeDay2 !== currentDay2
+    return beforeDay1 !== currentDay1 || beforeDay2 !== currentDay2
+    // return beforeDay1 !== currentDay1 && beforeDay2 !== currentDay2
   }
 
   const onChange = (dates: Array<Dayjs>): void => {
