@@ -1,4 +1,4 @@
 node_modules
 styleguide
-dist
+# dist
 antdStyles/css
