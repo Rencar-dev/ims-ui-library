@@ -1,6 +1,6 @@
 {
   "name": "@imsmobility/react-ims-ui",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "sass": "npm run css:clear && sass antdStyles/sass/:antdStyles/css/",
     "css:clear": "cd antdStyles && rm -rf css && cd ..",
     "dev": "styleguidist server",
-    "pub":"npm run build:prod && npm publish --access public"
+    "pub": "npm run build:prod && npm publish --access public"
   },
   "repository": {
     "type": "git",
