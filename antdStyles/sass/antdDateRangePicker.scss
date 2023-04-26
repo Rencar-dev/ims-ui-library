@@ -23,7 +23,10 @@
       width: 100%;
       margin: 0 !important;
       thead {
-        background-color: #fff;
+        background-color: #fff !important;
+        th {
+          background-color: #fff !important;
+        }
       }
       tbody {
         tr {
