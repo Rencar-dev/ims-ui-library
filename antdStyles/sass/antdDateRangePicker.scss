@@ -590,7 +590,6 @@ textarea.ant-picker-input > input {
   left: 0;
   z-index: 1;
   border: 1px solid #282828;
-  border-radius: 50%;
   content: "";
 }
 .ant-picker-cell-in-view.ant-picker-cell-in-range {
@@ -603,13 +602,11 @@ textarea.ant-picker-input > input {
 .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner {
   color: #fff;
   background: #282828;
-  border-radius: 50%;
 }
 .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
 .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
   color: #fff;
   background: #282828;
-  border-radius: 50%;
 }
 .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before {
   background: #f6f6f6;
@@ -970,25 +967,19 @@ _:-ms-fullscreen .ant-picker-range-wrapper .ant-picker-year-panel .ant-picker-ce
   border-bottom-right-radius: 47%;
 }
 .ant-picker-year-panel .ant-picker-cell-inner {
-  border-radius: 50% !important;
 }
 .ant-picker-year-panel .ant-picker-cell-inner:hover {
   background-color: #f6f6f6 !important;
-  border-radius: 50%;
 }
 .ant-picker-decade-panel .ant-picker-cell-inner {
-  border-radius: 50% !important;
 }
 .ant-picker-decade-panel .ant-picker-cell-inner:hover {
   background-color: #f6f6f6 !important;
-  border-radius: 50%;
 }
 .ant-picker-month-panel .ant-picker-cell-inner {
-  border-radius: 50% !important;
 }
 .ant-picker-month-panel .ant-picker-cell-inner:hover {
   background-color: #f6f6f6 !important;
-  border-radius: 50%;
 }
 .ant-picker-rtl {
   direction: rtl;
