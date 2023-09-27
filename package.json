@@ -66,6 +66,8 @@
     "static"
   ],
   "dependencies": {
-    "rc-picker": "^3.14.3"
+    "clean-webpack-plugin": "^4.0.0",
+    "rc-picker": "^3.14.3",
+    "terser-webpack-plugin": "^5.3.9"
   }
 }
