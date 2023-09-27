@@ -45,17 +45,18 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     if (isReverseDates) {
       return alert("종료일자는 시작일자보다 앞설 수 없습니다.");
     }
-
     if (!props?.onChange) {
-      console.log(DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR);
-      return;
-    }
-
-    const beforeValue = dayjsFormatParserForArray(value, dateFormat);
-    const currentValue = dayjsFormatParserForArray(dates, dateFormat); 
-    if(!isEqualWithBeforeValue(beforeValue, currentValue)) return; 
+        console.log(DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR);
+        return;
+      }
+      
+      const beforeValue = dayjsFormatParserForArray(value, dateFormat);
+      const currentValue = dayjsFormatParserForArray(dates, dateFormat); 
+      
+    // if(!isEqualWithBeforeValue(beforeValue, currentValue)) return; 
 
     FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+  
     props?.onChange(currentValue);
   };
 
@@ -104,12 +105,15 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
           return;
         }
         FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+        
         props.onChange(_dates)
       }
     }
     FocusBlurTarget.blurPlaceholder = event.target.placeholder;
     FocusBlurTarget.blurValue = event.target.value;
   }
+
+  
 
   const _props = {
     className,

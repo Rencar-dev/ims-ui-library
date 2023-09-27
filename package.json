@@ -1,6 +1,6 @@
 {
   "name": "@imsmobility/react-ims-ui",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -64,5 +64,8 @@
     "types",
     "antdStyles",
     "static"
-  ]
+  ],
+  "dependencies": {
+    "rc-picker": "^3.14.3"
+  }
 }
