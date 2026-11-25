@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import dayjsGenerateConfig from "rc-picker/lib/generate/dayjs";
 import generatePicker from "antd/es/date-picker/generatePicker";
 
@@ -13,12 +13,27 @@ import {
 import { DateRangePickerProps } from "../../../types/DateRangePicker";
 import { DATE_RANGE_PICKER_ONCALENDERCHANGE_ERROR } from "@src/assets/static/stringTable/stringTable";
 
+// 렌더마다 만들면 컴포넌트 타입이 매번 바뀌어 부모가 다시 그려질 때마다 달력이 재마운트된다(열림·포커스 상태 유실)
+const DatePicker: any = generatePicker<Dayjs>(dayjsGenerateConfig);
+
+const EMPTY_FOCUS_BLUR_TARGET = { focusPlaceholder: "", blurPlaceholder: "", focusValue: "", blurValue: "" };
+
+let pickerSeq = 0;
+
 const DateRangePicker: React.FC<DateRangePickerProps> = (
   props: DateRangePickerProps
 ) => {
-  const DatePicker: any = generatePicker<Dayjs>(dayjsGenerateConfig);
-  const className = props.className || "";
-  const dropdownClassName = props.dropdownClassName || "";
+  // 인스턴스마다 입력 영역·달력 팝업을 찾을 고유 클래스
+  const uidRef = useRef<string>("");
+  if (!uidRef.current) {
+    pickerSeq += 1;
+    uidRef.current = `ims-range-picker-${pickerSeq}`;
+  }
+  const uid = uidRef.current;
+  const [open, setOpen] = useState(false);
+
+  const className = `${props.className || ""} ${uid}`.trim();
+  const dropdownClassName = `${props.dropdownClassName || ""} ${uid}-dropdown`.trim();
   const popupStyle = props?.popupStyle // popup Calender style
   const dateFormat = props.format || "YYYY-MM-DD";
   const locale = props.locale || korea;
@@ -28,7 +43,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
   const value = stringDateToDayjsForArray(props.dates, dateFormat) || [];
   const mode = props.mode || "";
   const disabled = props.disabled || false;
-  let FocusBlurTarget: any = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+  // 렌더마다 초기화되지 않도록 ref에 둔다
+  const focusBlurRef = useRef<any>({ ...EMPTY_FOCUS_BLUR_TARGET });
 
   const isEqualWithBeforeValue = (before: any, current :any) => {
     const [beforeDay1, beforeDay2] = before;
@@ -55,15 +71,36 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
       const currentValue = dayjsFormatParserForArray(dates, dateFormat); 
     if(!isEqualWithBeforeValue(beforeValue, currentValue)) return; 
 
-    FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+    focusBlurRef.current = { ...EMPTY_FOCUS_BLUR_TARGET };
     props?.onChange(currentValue);
   };
 
-  const onOpenChange = props.onOpenChange
-    ? (open: any): void => {
-        props?.onOpenChange(open);
-      }
-    : undefined;
+  // 열림 상태를 직접 관리한다. antd 내부 판정(window mousedown)만으로는
+  // Windows 트랙패드 탭 등에서 바깥 클릭이 감지되지 않아 달력이 닫히지 않는 경우가 있다
+  const onOpenChange = (nextOpen: boolean): void => {
+    setOpen(nextOpen);
+    props?.onOpenChange?.(nextOpen);
+  };
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const closeIfOutside = (event: Event) => {
+      const target = event.target as Element | null;
+      if (!target || typeof target.closest !== "function") return;
+      if (target.closest(`.${uid}`) || target.closest(`.${uid}-dropdown`)) return;
+      onOpenChange(false);
+    };
+
+    // pointerdown은 마우스·트랙패드·터치·펜을 모두 받는다. 미지원 브라우저 대비 mousedown도 함께 둔다
+    document.addEventListener("pointerdown", closeIfOutside, true);
+    document.addEventListener("mousedown", closeIfOutside, true);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeIfOutside, true);
+      document.removeEventListener("mousedown", closeIfOutside, true);
+    };
+  }, [open]);
 
   const getPopupContainer: any = props?.getPopupContainer
     ? (triggerNode: any) => {
@@ -74,28 +111,28 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
       };
 
   const onFocus = props.onFocus ? props.onFocus : ( event: any ) => {
-    if(!!FocusBlurTarget.focusPlaceholder && !!FocusBlurTarget.blurPlaceholder) {
-      if(FocusBlurTarget.focusPlaceholder === FocusBlurTarget.blurPlaceholder) {
-        if(FocusBlurTarget.focusValue === FocusBlurTarget.blurValue) {
-          FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+    if(!!focusBlurRef.current.focusPlaceholder && !!focusBlurRef.current.blurPlaceholder) {
+      if(focusBlurRef.current.focusPlaceholder === focusBlurRef.current.blurPlaceholder) {
+        if(focusBlurRef.current.focusValue === focusBlurRef.current.blurValue) {
+          focusBlurRef.current = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
           return;
         }
     }
   }
-    FocusBlurTarget.blurPlaceholder = FocusBlurTarget.focusPlaceholder;
-    FocusBlurTarget.focusPlaceholder = event.target.placeholder;
-    FocusBlurTarget.focusValue = event.target.value;
+    focusBlurRef.current.blurPlaceholder = focusBlurRef.current.focusPlaceholder;
+    focusBlurRef.current.focusPlaceholder = event.target.placeholder;
+    focusBlurRef.current.focusValue = event.target.value;
   }
 
   const onBlur = props.onBlur ? props.onBlur : ( event: any ) => {
     let _dates = Array.isArray(props.dates) ?  [...props.dates] : [];
-    if(!!FocusBlurTarget.focusPlaceholder && !!FocusBlurTarget.blurPlaceholder) {
-      if(FocusBlurTarget.focusPlaceholder !== FocusBlurTarget.blurPlaceholder) {
-        if(FocusBlurTarget.blurPlaceholder === '시작일') {
-          _dates[0] = dayjs(FocusBlurTarget.blurValue);
+    if(!!focusBlurRef.current.focusPlaceholder && !!focusBlurRef.current.blurPlaceholder) {
+      if(focusBlurRef.current.focusPlaceholder !== focusBlurRef.current.blurPlaceholder) {
+        if(focusBlurRef.current.blurPlaceholder === '시작일') {
+          _dates[0] = dayjs(focusBlurRef.current.blurValue);
         }
-        if(FocusBlurTarget.blurPlaceholder === '종료일') {
-          _dates[1] = dayjs(FocusBlurTarget.blurValue);
+        if(focusBlurRef.current.blurPlaceholder === '종료일') {
+          _dates[1] = dayjs(focusBlurRef.current.blurValue);
         }
         _dates = _dates.map(date => dayjs(date).format(dateFormat))
         if(_dates.some(date=> date === 'Invalid Date')) {
@@ -103,13 +140,13 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
           _dates = _dates.map(date => dayjs(date).format(dateFormat));
           return;
         }
-        FocusBlurTarget = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
+        focusBlurRef.current = {focusPlaceholder: '' , blurPlaceholder: '', focusValue: '', blurValue: ''};
         
         props.onChange(_dates)
       }
     }
-    FocusBlurTarget.blurPlaceholder = event.target.placeholder;
-    FocusBlurTarget.blurValue = event.target.value;
+    focusBlurRef.current.blurPlaceholder = event.target.placeholder;
+    focusBlurRef.current.blurValue = event.target.value;
   }
 
   
@@ -126,6 +163,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (
     value,
     mode,
     onChange,
+    open,
     onOpenChange,
     getPopupContainer,
     disabled,
